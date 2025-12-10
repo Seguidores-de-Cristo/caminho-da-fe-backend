@@ -26,3 +26,16 @@ Execute e siga as instruções para cada dependencia
 - Testar se o banco subiu > docker compose logs -f db
 - Subir migrations (Banco) > poetry alembic upgrade head
 - Rodar a api > poetry run uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+## Senhas e hashing
+
+- O projeto usa Argon2 para hashing de senhas através do `passlib` (handler `argon2`).
+- A dependência `argon2-cffi` é requerida (já adicionada no `pyproject.toml`).
+- Motivo: Argon2 evita o limite de 72 bytes do bcrypt e oferece hashing moderno e seguro.
+- Observação sobre compatibilidade: se já existirem hashes antigos com bcrypt no banco, verifique se você
+	precisa manter suporte a verificação legacy (adicionar `bcrypt` ou `bcrypt_sha256` no `CryptContext`).
+
+Exemplo de verificação/geração local rápida:
+```bash
+poetry run python -c "from app.crud.user import get_password_hash; print(get_password_hash('minha_senha_segura'))"
+```

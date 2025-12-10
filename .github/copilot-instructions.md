@@ -12,6 +12,7 @@ Key files to reference
 - `app/core/config.py` — reads `DATABASE_URL` from env (default points to the `db` service in `docker-compose`).
 - `app/db/session.py` — `engine`, `SessionLocal`, `Base`, `init_db()` (note: `init_db()` calls `Base.metadata.create_all`, but Alembic is the preferred migration tool).
 - `app/models/user.py`, `app/schemas/user.py`, `app/crud/user.py` — canonical example for how models, schemas, and CRUD interact (password hashing with `passlib` in `crud`).
+- `app/models/user.py`, `app/schemas/user.py`, `app/crud/user.py` — canonical example for how models, schemas, and CRUD interact (password hashing with `passlib` in `crud`; project uses `argon2` handler).
 - `alembic/env.py` — Alembic reads `DATABASE_URL` from environment via `python-dotenv`; migrations require `DATABASE_URL` to be set.
 - `docker-compose.yaml` — defines `db` service (MariaDB) and credentials which match the default `DATABASE_URL` in `config.py`.
 
@@ -31,6 +32,14 @@ Project-specific conventions
 - Keep DB access in `app/crud/*` functions; routes should call `crud` and use `Depends(get_db)` (see `app/main.py`).
 - Use `pydantic` models with `orm_mode = True` for response models (see `UserOut` in `app/schemas/user.py`).
 - Passwords are hashed via `passlib` in `app/crud/user.py` — preserve that approach for any auth-related changes.
+ - Use `pydantic` models with `orm_mode = True` for response models (see `UserOut` in `app/schemas/user.py`).
+ - Passwords are hashed via `passlib` in `app/crud/user.py` using `argon2` (via `argon2-cffi`). This avoids bcrypt's 72-byte password limit and is the default for new hashes.
+   - If you need to verify existing bcrypt hashes, include them as fallbacks in the `CryptContext`, for example:
+     ```python
+     from passlib.context import CryptContext
+     pwd_context = CryptContext(schemes=["argon2", "bcrypt_sha256", "bcrypt"], deprecated="auto")
+     ```
+   - `argon2-cffi` is listed in `pyproject.toml` and will be installed by `poetry install`.
 - Prefer Alembic for schema changes. `app/db/session.init_db()` exists for convenience but don't rely on it for production migrations.
 
 Integration points & environment
@@ -45,6 +54,7 @@ Notes for contributors/AI agents
 Examples to reference when making edits
 - Add user endpoint — see `app/main.py` (uses `crud_user.create_user`, `schemas.UserCreate`, `schemas.UserOut`).
 - Hashing example — `app/crud/user.py::get_password_hash` uses `passlib.context.CryptContext` with `bcrypt` scheme.
+ - Hashing example — `app/crud/user.py::get_password_hash` uses `passlib.context.CryptContext` with `argon2` scheme (see README for notes and compatibility).
 
 If something is unclear
 - Ask for the intended runtime (inside compose vs local host) when database connection details matter.

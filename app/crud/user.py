@@ -3,7 +3,10 @@ from ..models.user import User
 from ..schemas.user import UserCreate
 from passlib.context import CryptContext
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+# Use Argon2 to avoid bcrypt's 72-byte password truncation limit and
+# backend-detection complications. Argon2 provides strong, modern hashing
+# without the fixed 72-byte limit.
+pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
 def get_password_hash(password: str) -> str:
     return pwd_context.hash(password)
