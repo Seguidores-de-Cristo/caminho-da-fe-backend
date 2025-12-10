@@ -17,6 +17,7 @@ Execute e siga as instruções para cada dependencia
 ## Instalar dependencias e ativar ambiente
 
 > poetry install
+
 > poetry env activate
 
 ## Rodar localmente
