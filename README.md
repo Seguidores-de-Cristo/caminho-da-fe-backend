@@ -19,11 +19,9 @@ Execute e siga as instruções para cada dependencia
 > poetry install
 > poetry env activate
 
-## Rodar localmente - Banco
+## Rodar localmente
 
 - Subir o > docker-compose up -d
 - Testar se o banco subiu > docker compose logs -f db
-
-## Subir migrations - Banco
-
-- poetry alembic upgrade head
+- Subir migrations (Banco) > poetry alembic upgrade head
+- Rodar a api > poetry run uvicorn app.main:app --host 0.0.0.0 --port 8000
