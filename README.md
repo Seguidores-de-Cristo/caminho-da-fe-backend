@@ -10,10 +10,6 @@ Execute e siga as instruções para cada dependencia
 
 - Instale a versão do python para trabalhar (3.12.1)
 
-### Alembic
-
-> pip install alembic
-
 ### Poetry
 
 > curl -sSL https://install.python-poetry.org | python3 -
@@ -30,4 +26,4 @@ Execute e siga as instruções para cada dependencia
 
 ## Subir migrations - Banco
 
-- alembic upgrade head
+- poetry alembic upgrade head
