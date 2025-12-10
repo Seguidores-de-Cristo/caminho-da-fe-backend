@@ -1,0 +1,83 @@
+# ============================
+# Python
+# ============================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments (Poetry, venv)
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter / IPython
+.ipynb_checkpoints/
+profile_default/
+ipython_config.py
+
+# ============================
+# Poetry
+# ============================
+# Remove lockfile se você não quiser versionar:
+# poetry.lock
+
+# Cache
+.poetry/
+
+# ============================
+# FastAPI / Uvicorn / Gunicorn
+# ============================
+*.log
+
+# ============================
+# SQLAlchemy / Alembic
+# ============================
+alembic/versions/__pycache__/
+alembic/*cache*
+alembic.ini.bak
+
+# ============================
+# Docker / Podman
+# ============================
+# Local volumes & build outputs
+data/
+volumes/
+*.pid
+
+# Ignore Docker build cache
+**/.dockerignore
+**/.containerignore
+
+# Podman compose specific
+podman-compose.override.yml
+
+# ============================
+# OS / Editor stuff
+# ============================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# JetBrains IDE
+.idea/
+
+# ============================
+# Node (caso tenha frontend no mesmo repo)
+# ============================
+node_modules/
+dist/
+build/
+*.tsbuildinfo
+
+# ============================
+# Environment files
+# ============================
+.env
+.env.*
+!.env.example
