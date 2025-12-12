@@ -45,15 +45,13 @@ def update_user_route(user_id: int, user_in: user_schema.UserUpdate, db: Session
 
 @app.post("/novos-convertidos/", response_model=nc_schema.NovoConvertidoOut)
 def create_novo_convertido(dados: dict, db: Session = Depends(get_db)):
-    """
-    Cria um novo convertido. Se o CEP estiver presente, preenche os campos de endereço automaticamente.
-    """
+
     # Verifica se o discipulador existe
     discipulador = crud_user.get_user(db, dados.get("discipulador_id"))
     if not discipulador:
         raise HTTPException(status_code=400, detail="Não há discipulador")
     
-    # Preenche endereço automaticamente se algum campo estiver faltando
+    # Se informado o CEP preenche endereço automaticamente
     cep = dados.get("cep")
     if cep and (not dados.get("endereco") or not dados.get("bairro") or not dados.get("uf")):
         endereco = buscar_cep(cep)

@@ -39,6 +39,7 @@ class NovoConvertidoUpdate(BaseModel):
 
 class NovoConvertidoOut(NovoConvertidoBase):
     id: int
+    data_cadastro: date
 
     class Config:
         from_attributes = True
