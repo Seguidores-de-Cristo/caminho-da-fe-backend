@@ -70,17 +70,6 @@ def create_novo_convertido(dados: dict, db: Session = Depends(get_db)):
     return crud_nc.create_novo_convertido(db, nc_in)
 
 
-
-# @app.post("/novos-convertidos/", response_model=nc_schema.NovoConvertidoOut)
-# def create_novo_convertido(nc_in: nc_schema.NovoConvertidoCreate, db: Session = Depends(get_db)):
-#     # Verifica se o discipulador existe
-#     discipulador = crud_user.get_user(db, nc_in.discipulador_id)
-#     if not discipulador:
-#         raise HTTPException(status_code=400, detail="Não há discipulador")
-
-#     return crud_nc.create_novo_convertido(db, nc_in)
-
-
 @app.get("/novos-convertidos/", response_model=list[nc_schema.NovoConvertidoOut])
 def list_novos_convertidos(db: Session = Depends(get_db)):
     return crud_nc.list_novos_convertidos(db)
