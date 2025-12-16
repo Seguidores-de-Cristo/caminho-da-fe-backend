@@ -14,8 +14,7 @@ def create_novo_convertido(db: Session, nc_in: NovoConvertidoCreate):
         cidade=nc_in.cidade,
         uf=nc_in.uf,
         data_nascimento=nc_in.data_nascimento,
-        data_cadastro = date.today(),
-        idade=nc_in.idade,
+        data_cadastro=date.today(),
         data_conversao=nc_in.data_conversao,
         discipulador_id=nc_in.discipulador_id,
     )
