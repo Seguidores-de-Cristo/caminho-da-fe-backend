@@ -1,6 +1,8 @@
 from pydantic import BaseModel, EmailStr
+from typing import Optional
 
 class UserBase(BaseModel):
+    nome: str
     email: EmailStr
 
 class UserCreate(UserBase):
@@ -12,3 +14,6 @@ class UserOut(UserBase):
 
     class Config:
         orm_mode = True
+
+class UserUpdate(BaseModel):
+    nome: Optional[str] = None

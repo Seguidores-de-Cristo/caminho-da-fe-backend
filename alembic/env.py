@@ -23,12 +23,11 @@ config = context.config
 # Interpret the config file for Python logging.
 fileConfig(config.config_file_name)
 
-# carregar DATABASE_URL do env
+# carregar DATABASE_URL do env; usar fallback do app se não definido
 from dotenv import load_dotenv
 load_dotenv()
-DATABASE_URL = os.getenv("DATABASE_URL")
-if not DATABASE_URL:
-    raise RuntimeError("DATABASE_URL must be set in environment")
+from app.core.config import DATABASE_URL as APP_DATABASE_URL
+DATABASE_URL = os.getenv("DATABASE_URL", APP_DATABASE_URL)
 
 config.set_main_option("sqlalchemy.url", DATABASE_URL)
 

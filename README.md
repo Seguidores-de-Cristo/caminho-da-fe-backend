@@ -22,9 +22,10 @@ Execute e siga as instruções para cada dependencia
 
 ## Rodar localmente
 
-- Subir o > docker-compose up -d
+- Subir o > docker compose up -d
 - Testar se o banco subiu > docker compose logs -f db
 - Subir migrations (Banco) > poetry alembic upgrade head
+- Subir migrations (Banco) > poetry run alembic upgrade head
 - Rodar a api > poetry run uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 ## Senhas e hashing
@@ -39,3 +40,6 @@ Exemplo de verificação/geração local rápida:
 ```bash
 poetry run python -c "from app.crud.user import get_password_hash; print(get_password_hash('minha_senha_segura'))"
 ```
+
+Instalação do resquests:
+pip install requests
