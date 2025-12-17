@@ -6,6 +6,7 @@ from app.routers import (
     discipulado_router,
     cep_router,
     contatos_novos_convertidos_router,
+    auth_router,
 )
 
 app = FastAPI(title="Caminho da Fé API")
@@ -16,9 +17,9 @@ def on_startup():
     init_db()
 
 
-# Incluir routers
 app.include_router(users_router)
 app.include_router(novos_convertidos_router)
 app.include_router(discipulado_router)
 app.include_router(cep_router)
 app.include_router(contatos_novos_convertidos_router)
+app.include_router(auth_router)

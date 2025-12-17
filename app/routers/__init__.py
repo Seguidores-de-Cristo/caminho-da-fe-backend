@@ -5,6 +5,7 @@ from app.routers.novos_convertidos_router import router as novos_convertidos_rou
 from app.routers.discipulado_router import router as discipulado_router
 from app.routers.cep_router import router as cep_router
 from app.routers.contatos_novos_convertidos_router import router as contatos_novos_convertidos_router
+from app.routers.auth_router import router as auth_router
 
 __all__ = [
     "users_router",
@@ -12,4 +13,5 @@ __all__ = [
     "discipulado_router",
     "cep_router",
     "contatos_novos_convertidos_router",
+    "auth_router",
 ]
