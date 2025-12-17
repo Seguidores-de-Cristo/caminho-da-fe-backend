@@ -3,7 +3,7 @@ from sqlalchemy import Column, Integer, String, Date, ForeignKey, Boolean
 from app.db.session import Base
 
 
-class Contato(Base):
+class ContatoNovoConvertido(Base):
     __tablename__ = "contatoNovoConvertido"
 
     id = Column(Integer, primary_key=True, index=True)
