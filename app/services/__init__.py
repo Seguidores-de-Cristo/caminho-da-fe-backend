@@ -10,4 +10,5 @@ __all__ = [
     "UserService",
     "NovoConvertidoService",
     "DiscipuladoRelationshipService",
+    "ContatosNovosConvertidosAcoesService",
 ]

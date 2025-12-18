@@ -23,13 +23,24 @@ router = APIRouter(prefix="/users", tags=["Usuários / Discipuladores"])
 def criar_usuario(
     user_in: UserCreate,
     db: Session = Depends(get_db),
-    current_user: models.User = Depends(get_current_user)
 ):
     """Cria um novo usuário (discipulador)."""
     try:
         return UserService.criar_usuario(db, user_in)
     except AppException as e:
         raise HTTPException(status_code=e.status_code, detail=e.message)
+
+# @router.post("/", response_model=UserOut, status_code=201)
+# def criar_usuario(
+#     user_in: UserCreate,
+#     db: Session = Depends(get_db),
+#     current_user: models.User = Depends(get_current_user)
+# ):
+#     """Cria um novo usuário (discipulador)."""
+#     try:
+#         return UserService.criar_usuario(db, user_in)
+#     except AppException as e:
+#         raise HTTPException(status_code=e.status_code, detail=e.message)
 
 
 @router.get("/{user_id}", response_model=UserOut)
