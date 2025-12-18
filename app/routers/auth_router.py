@@ -33,7 +33,7 @@ def get_current_user(
     except JWTError:
         raise HTTPException(status_code=401, detail="Invalid credentials")
 
-    user = crud_user.get_user_by_email(db, email=email)
+    user = crud_user.get_user_by_email(db, email=email, include_inactive=False)
     if not user:
         raise HTTPException(status_code=401, detail="User not found")
 

@@ -1,8 +1,10 @@
 """Router para endpoints de usuários (discipuladores)."""
 
+from app.routers.auth_router import get_current_user
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
 from app.db.session import get_db
+from .. import models
 from app.schemas.user import UserCreate, UserUpdate, UserOut
 from app.services.user_service import UserService
 from app.services.discipulado_relationship_service import (
@@ -21,6 +23,7 @@ router = APIRouter(prefix="/users", tags=["Usuários / Discipuladores"])
 def criar_usuario(
     user_in: UserCreate,
     db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user)
 ):
     """Cria um novo usuário (discipulador)."""
     try:
@@ -33,6 +36,7 @@ def criar_usuario(
 def obter_usuario(
     user_id: int,
     db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user)
 ):
     """Obtém um usuário pelo ID."""
     try:
@@ -46,6 +50,7 @@ def listar_usuarios(
     skip: int = Query(0, ge=0),
     limit: int = Query(100, ge=1, le=1000),
     db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user)
 ):
     """Lista usuários com paginação."""
     return UserService.listar_usuarios(db, skip=skip, limit=limit)
@@ -56,6 +61,7 @@ def atualizar_usuario(
     user_id: int,
     user_in: UserUpdate,
     db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user)
 ):
     """Atualiza um usuário."""
     try:
@@ -68,6 +74,7 @@ def atualizar_usuario(
 def contar_convertidos_discipulador(
     user_id: int,
     db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user)
 ):
     """Conta quantos novos convertidos estão vinculados a um discipulador."""
     try:

@@ -10,6 +10,8 @@ from app.services.discipulado_relationship_service import (
 )
 from app.services.novo_convertido_service import NovoConvertidoService
 from app.exceptions import AppException
+from .. import models
+from app.routers.auth_router import get_current_user
 
 router = APIRouter(
     prefix="/discipulador",
@@ -23,6 +25,7 @@ def listar_convertidos_por_discipulador(
     skip: int = Query(0, ge=0),
     limit: int = Query(100, ge=1, le=1000),
     db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user),
 ):
     """Lista todos os novos convertidos de um discipulador."""
     try:
@@ -41,6 +44,7 @@ def vincular_convertido_discipulador(
     convertido_id: int,
     discipulador_id: int,
     db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user),
 ):
     """Vincula um novo convertido a um discipulador."""
     try:
@@ -58,6 +62,7 @@ def vincular_convertido_discipulador(
 def desvincular_convertido_discipulador(
     convertido_id: int,
     db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user),
 ):
     """Remove a vinculação de um convertido com seu discipulador."""
     try:
@@ -72,6 +77,7 @@ def desvincular_convertido_discipulador(
 def obter_discipulador_convertido(
     convertido_id: int,
     db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user),
 ):
     """Obtém o discipulador (user) responsável por um convertido."""
     try:

@@ -9,6 +9,8 @@ from app.schemas.contatos_novos_convertidos_schema import (
 from app.services.contatos_novos_convertidos_services import (
     ContatosNovosConvertidosService,
 )
+from .. import models
+from app.routers.auth_router import get_current_user
 
 router = APIRouter(
     prefix="/contatos-novos-convertidos",
@@ -19,6 +21,7 @@ router = APIRouter(
 def criar_contato(
     contato_in: ContatoNovoConvertidoCreate,
     db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user),
 ):
     try:
         service = ContatosNovosConvertidosService()

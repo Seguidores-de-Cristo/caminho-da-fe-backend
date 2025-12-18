@@ -1,13 +1,15 @@
 """Router para endpoints de CEP."""
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 import requests
+from .. import models
+from app.routers.auth_router import get_current_user
 
 router = APIRouter(prefix="/cep", tags=["CEP"])
 
 
 @router.get("/{cep}")
-def buscar_cep(cep: str):
+def buscar_cep(cep: str, current_user: models.User = Depends(get_current_user)):
     """
     Recebe um CEP e retorna os dados do endereço via ViaCEP.
     
