@@ -1,6 +1,7 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional
 
+
 class UserBase(BaseModel):
     nome: str
     email: EmailStr

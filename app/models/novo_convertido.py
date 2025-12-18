@@ -17,6 +17,16 @@ class NovoConvertido(Base):
     uf = Column(String(2), nullable=False)          
     data_nascimento = Column(Date, nullable=False)
     data_cadastro = Column(Date, nullable=False, default=date.today, server_default=sa.text('CURRENT_DATE'))
-    idade = Column(Integer, nullable=True)
     data_conversao = Column(Date, nullable=False)
     discipulador_id = Column(Integer, ForeignKey("users.id"))
+
+    @property
+    def idade(self) -> int:
+        """Calcula idade em tempo de execução a partir de data_nascimento."""
+        if self.data_nascimento:
+            hoje = date.today()
+            idade_calc = hoje.year - self.data_nascimento.year
+            if (hoje.month, hoje.day) < (self.data_nascimento.month, self.data_nascimento.day):
+                idade_calc -= 1
+            return idade_calc
+        return None

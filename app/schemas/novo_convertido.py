@@ -1,5 +1,6 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from datetime import date
+from typing import Optional
 
 
 class NovoConvertidoBase(BaseModel):
@@ -40,6 +41,38 @@ class NovoConvertidoUpdate(BaseModel):
 class NovoConvertidoOut(NovoConvertidoBase):
     id: int
     data_cadastro: date
+
+    class Config:
+        from_attributes = True
+
+
+class NovoConvertidoOutComDiscipulador(NovoConvertidoOut):
+    """Schema com dados resumidos do discipulador."""
+
+    class DiscipuladorInfo(BaseModel):
+        id: int
+        nome: str
+        email: str
+
+        class Config:
+            from_attributes = True
+
+    discipulador: Optional[DiscipuladorInfo] = None
+
+    class Config:
+        from_attributes = True
+
+
+class NovoConvertidoStats(BaseModel):
+    """Estatísticas de um convertido."""
+
+    id: int
+    nome: str
+    data_cadastro: date
+    dias_desde_cadastro: int = Field(
+        ..., description="Dias desde a data de cadastro"
+    )
+    idade: Optional[int] = None
 
     class Config:
         from_attributes = True
