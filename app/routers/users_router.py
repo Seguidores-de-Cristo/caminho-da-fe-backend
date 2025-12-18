@@ -64,6 +64,8 @@ def atualizar_usuario(
     current_user: models.User = Depends(get_current_user)
 ):
     """Atualiza um usuário."""
+    if current_user.id != user_id:
+        raise HTTPException(status_code=403, detail="Você só pode atualizar seus próprios dados.")
     try:
         return UserService.atualizar_usuario(db, user_id, user_in)
     except AppException as e:
