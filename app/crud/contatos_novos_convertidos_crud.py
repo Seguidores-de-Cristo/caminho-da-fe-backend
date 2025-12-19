@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from app.schemas.contatos_novos_convertidos_schema import ContatoNovoConvertidoCreate
 from app.models.contatos_novos_convertidos_models import ContatoNovoConvertido
-from datetime import date
+
 
 def create_contato_novo_convertido(db: Session, nc_in: ContatoNovoConvertidoCreate):
     novo = ContatoNovoConvertido(
