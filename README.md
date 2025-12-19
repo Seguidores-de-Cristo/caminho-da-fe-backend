@@ -25,7 +25,7 @@ Execute e siga as instruções para cada dependencia
 - Subir o > docker compose up -d
 - Testar se o banco subiu > docker compose logs -f db
 - Subir migrations (Banco) > poetry alembic upgrade head
-- Versions -> poetry run alembic revision --autogenerate -m "description of migration"
+- VersionsDB -> poetry run alembic revision --autogenerate -m "description of migration"
 - Subir migrations (Banco) > poetry run alembic upgrade head
 - Rodar a api > poetry run uvicorn app.main:app --host 0.0.0.0 --port 8000
 

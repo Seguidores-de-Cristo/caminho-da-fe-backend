@@ -11,7 +11,15 @@ class ContatoNovosConvertidosAcoesBase(BaseModel):
     teleoracao: bool
     outros_especificar: bool
     especificacao_outros: Optional[str] = None
-    
+
+    convite_culto_igreja_resposta: bool
+    convite_culto_lar_resposta: bool
+    convite_escola_dominicial_resposta: bool
+    convite_reuniao_discipulado_resposta: bool
+    outros_especificar_resposta: bool
+    especificacao_outros_resposta: Optional[str]
+
+    manter_contato: bool
 
 
 class ContatoNovosConvertidosAcoesCreate(ContatoNovosConvertidosAcoesBase):
@@ -29,14 +37,18 @@ class ContatoNovosConvertidosAcoesUpdate(BaseModel):
     outros_especificar: bool | None = None
     especificacao_outros: Optional[str] = None
 
+    convite_culto_igreja_resposta: bool | None = None
+    convite_culto_lar_resposta: bool | None = None
+    convite_escola_dominicial_resposta: bool | None = None
+    convite_reuniao_discipulado_resposta: bool | None = None
+    outros_especificar_resposta: bool | None = None
+    especificacao_outros_resposta: Optional[str] = None
+
+    manter_contato: bool | None = None
+
 
 class ContatoNovosConvertidosAcoesOut(ContatoNovosConvertidosAcoesBase):
     id: int
 
     class Config:
         from_attributes = True
-
-
-
-
-
