@@ -22,7 +22,8 @@ router = APIRouter(prefix="/users", tags=["Usuários / Discipuladores"])
 @router.post("/", response_model=UserOut, status_code=201)
 def criar_usuario(
     user_in: UserCreate,
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(get_current_user)
 ):
     """Cria um novo usuário (discipulador)."""
     try:
