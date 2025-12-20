@@ -13,6 +13,15 @@ def create_contato_novo_convertido_acoes(db: Session, nc_in: ContatoNovosConvert
         teleoracao=nc_in.teleoracao,
         outros_especificar=nc_in.outros_especificar,
         especificacao_outros=nc_in.especificacao_outros,
+
+        convite_culto_igreja_resposta=nc_in.convite_culto_igreja_resposta,
+        convite_culto_lar_resposta=nc_in.convite_culto_lar_resposta,
+        convite_escola_dominicial_resposta=nc_in.convite_escola_dominicial_resposta,
+        convite_reuniao_discipulado_resposta=nc_in.convite_reuniao_discipulado_resposta,
+        outros_especificar_resposta=nc_in.outros_especificar_resposta,
+        especificacao_outros_resposta=nc_in.especificacao_outros_resposta,
+        
+        manter_contato=nc_in.manter_contato,
     )
     db.add(novo)
     db.commit()

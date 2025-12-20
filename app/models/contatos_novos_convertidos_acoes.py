@@ -16,3 +16,13 @@ class ContatoNovoConvertidoAcoes(Base):
     
     outros_especificar = Column(Boolean, nullable=False)
     especificacao_outros = Column(String(1000), nullable=True)
+
+    convite_culto_igreja_resposta = Column(Boolean, nullable=False)
+    convite_culto_lar_resposta = Column(Boolean, nullable=False)
+    convite_escola_dominicial_resposta = Column(Boolean, nullable=False)
+    convite_reuniao_discipulado_resposta = Column(Boolean, nullable=False)
+
+    outros_especificar_resposta = Column(Boolean, nullable=False)
+    especificacao_outros_resposta = Column(String(1000), nullable=True)
+
+    manter_contato = Column(Boolean, nullable=False)
