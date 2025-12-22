@@ -41,6 +41,7 @@ class NovoConvertidoUpdate(BaseModel):
 class NovoConvertidoOut(NovoConvertidoBase):
     id: int
     data_cadastro: date
+    idade: Optional[int]
 
     class Config:
         from_attributes = True

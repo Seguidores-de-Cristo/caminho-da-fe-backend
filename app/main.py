@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from app.db.session import init_db
 from app.routers import (
     users_router,
@@ -12,6 +13,20 @@ from app.routers import (
 )
 
 app = FastAPI(title="Caminho da Fé API")
+
+origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,      # em dev pode ser ["*"]
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 
 @app.on_event("startup")
