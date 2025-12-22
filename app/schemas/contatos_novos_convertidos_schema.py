@@ -8,7 +8,6 @@ class ContatoNovoConvertidoBase(BaseModel):
     novo_convertido_id: int
     sucesso_contato: bool
     data_contato: date
-    contact_event_id: str
     protocolo: str
     hora_protocolo: str
 
@@ -23,7 +22,6 @@ class ContatoNovoConvertidoUpdate(BaseModel):
     novo_convertido_id: int | None = None
     sucesso_contato: bool | None = None
     data_contato: date | None = None
-    contact_event_id: str | None = None
     protocolo: str | None = None
     hora_protocolo: str | None = None
 
