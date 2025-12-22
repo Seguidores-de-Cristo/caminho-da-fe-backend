@@ -104,14 +104,14 @@ class UserService:
         if not user:
             raise ResourceNotFoundException("Usuário", user_id)
 
-        # Se email mudou, validar unicidade
-        if user_in.email and user_in.email != user.email:
-            existing = get_user_by_email(db, user_in.email)
-            if existing:
-                raise ConflictException(
-                    f"Email '{user_in.email}' já está registrado",
-                    details={"email": user_in.email},
-                )
+        if not any([
+            user_in.nome is not None,
+            user_in.telefone is not None,
+            user_in.is_active is not None,
+        ]):
+            raise ValidationException(
+                "Nenhum campo válido para atualização foi enviado."
+            )
 
         return update_user(db, user, user_in)
 

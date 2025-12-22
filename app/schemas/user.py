@@ -19,3 +19,5 @@ class UserOut(UserBase):
 
 class UserUpdate(BaseModel):
     nome: Optional[str] = None
+    telefone: Optional[str] = None
+    is_active: Optional[bool] = None
