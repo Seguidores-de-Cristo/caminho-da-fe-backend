@@ -32,11 +32,15 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     return pwd_context.verify(plain_password, hashed_password)
 
 def update_user(db: Session, db_user: User, user_in: UserUpdate) -> User:
-    """
-    Atualiza apenas nome do usuário.
-    """
+
     if user_in.nome is not None:
         db_user.nome = user_in.nome
+
+    if user_in.telefone is not None:
+        db_user.telefone = user_in.telefone
+
+    if user_in.is_active is not None:
+        db_user.is_active = user_in.is_active
 
     db.commit()
     db.refresh(db_user)
