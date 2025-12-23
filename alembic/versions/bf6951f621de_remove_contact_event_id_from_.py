@@ -1,5 +1,6 @@
 from typing import Sequence, Union
 from alembic import op
+import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
 revision: str = 'bf6951f621de'
@@ -14,7 +15,4 @@ def upgrade() -> None:
 
 
 def downgrade() -> None:
-    # Downgrade não suportado: coluna era duplicada e removida de forma definitiva
-    raise NotImplementedError(
-        "Downgrade não suportado: coluna contact_event_id foi removida por ser duplicada de 'protocolo'."
-    )
+    op.add_column('contatoNovoConvertido', sa.Column('contact_event_id', sa.String(length=26), nullable=True))
