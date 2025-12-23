@@ -12,6 +12,5 @@ class ContatoNovoConvertido(Base):
     sucesso_contato = Column(Boolean, nullable=False)
     data_contato = Column(Date, nullable=False, server_default=sa.text('CURRENT_DATE'))
 
-    contact_event_id = Column(String(26), nullable=False, unique=True, index=True)
     protocolo = Column(String(26), nullable=False, unique=True, index=True)
     hora_protocolo = Column(String(8), nullable=False)

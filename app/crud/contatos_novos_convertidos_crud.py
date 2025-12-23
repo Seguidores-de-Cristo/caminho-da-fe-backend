@@ -9,7 +9,6 @@ def create_contato_novo_convertido(db: Session, nc_in: ContatoNovoConvertidoCrea
         novo_convertido_id=nc_in.novo_convertido_id,
         sucesso_contato=nc_in.sucesso_contato,
         data_contato=nc_in.data_contato,
-        contact_event_id=nc_in.contact_event_id,
         protocolo=nc_in.protocolo,
         hora_protocolo=nc_in.hora_protocolo,
     )

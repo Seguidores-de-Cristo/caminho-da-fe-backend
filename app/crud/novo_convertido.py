@@ -29,9 +29,20 @@ def list_novos_convertidos(db: Session):
 def get_novo_convertido(db: Session, nc_id: int):
     return db.query(NovoConvertido).filter(NovoConvertido.id == nc_id).first()
 
-def update_novo_convertido(db: Session, nc_db, nc_in):
-    for field, value in nc_in.dict(exclude_unset=True).items():
-        setattr(nc_db, field, value)
+def update_novo_convertido(db, nc_db, nc_in):
+    data = nc_in.dict(exclude_unset=True)
+
+    # campos permitidos para update
+    allowed_fields = {
+        "nome",
+        "data_nascimento",
+        "telefone",
+        "is_active",
+    }
+
+    for field, value in data.items():
+        if field in allowed_fields:
+            setattr(nc_db, field, value)
 
     db.commit()
     db.refresh(nc_db)
