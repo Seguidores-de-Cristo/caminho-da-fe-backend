@@ -14,3 +14,5 @@ class ContatoNovoConvertido(Base):
 
     protocolo = Column(String(26), nullable=False, unique=True, index=True)
     hora_protocolo = Column(String(8), nullable=False)
+
+    status_contato = Column(String(50), nullable=False)

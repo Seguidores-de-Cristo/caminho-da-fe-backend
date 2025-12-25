@@ -26,3 +26,20 @@ class ContatoNovoConvertidoAcoes(Base):
     especificacao_outros_resposta = Column(String(1000), nullable=True)
 
     manter_contato = Column(Boolean, nullable=False)
+    motivo_nao_manter_contato = Column(String(1000), nullable=True)
+
+    cadidato_abandonou_discipulado = Column(Boolean, nullable=False)
+    motivo_abandono_discipulado = Column(String(1000), nullable=True)
+
+    agendar_proximo_contato_data = Column(Date, nullable=True)
+    agendar_proximo_contato_hora = Column(String(8), nullable=True)
+
+    # Após finalização do discipulado
+    candidato_preparado_batismo = Column(Boolean, nullable=False)
+    data_batismo = Column(Date, nullable=True)
+
+    candidato_esta_em_duvidas_batismo = Column(Boolean, nullable=False)
+    motivo_duvidas_batismo = Column(String(1000), nullable=True)
+
+    candidato_desistiu_batismo = Column(Boolean, nullable=False)
+    motivo_desistencia_batismo = Column(String(1000), nullable=True) 
