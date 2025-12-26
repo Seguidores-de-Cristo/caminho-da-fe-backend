@@ -10,6 +10,7 @@ class ContatoNovoConvertidoBase(BaseModel):
     data_contato: date
     protocolo: str
     hora_protocolo: str
+    status_contato: str
 
 
 class ContatoNovoConvertidoCreate(ContatoNovoConvertidoBase):
@@ -24,6 +25,7 @@ class ContatoNovoConvertidoUpdate(BaseModel):
     data_contato: date | None = None
     protocolo: str | None = None
     hora_protocolo: str | None = None
+    status_contato: str | None = None
 
 
 class ContatoNovoConvertidoOut(ContatoNovoConvertidoBase):

@@ -22,6 +22,17 @@ def create_contato_novo_convertido_acoes(db: Session, nc_in: ContatoNovosConvert
         especificacao_outros_resposta=nc_in.especificacao_outros_resposta,
         
         manter_contato=nc_in.manter_contato,
+        motivo_nao_manter_contato=nc_in.motivo_nao_manter_contato,
+        cadidato_abandonou_discipulado=nc_in.cadidato_abandonou_discipulado,
+        motivo_abandono_discipulado=nc_in.motivo_abandono_discipulado,
+        agendar_proximo_contato_data=nc_in.agendar_proximo_contato_data,
+        agendar_proximo_contato_hora=nc_in.agendar_proximo_contato_hora,
+        candidato_preparado_batismo=nc_in.candidato_preparado_batismo,
+        data_batismo=nc_in.data_batismo,
+        candidato_esta_em_duvidas_batismo=nc_in.candidato_esta_em_duvidas_batismo,
+        motivo_duvidas_batismo=nc_in.motivo_duvidas_batismo,
+        candidato_desistiu_batismo=nc_in.candidato_desistiu_batismo,
+        motivo_desistencia_batismo=nc_in.motivo_desistencia_batismo,
     )
     db.add(novo)
     db.commit()
