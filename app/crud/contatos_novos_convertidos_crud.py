@@ -11,6 +11,7 @@ def create_contato_novo_convertido(db: Session, nc_in: ContatoNovoConvertidoCrea
         data_contato=nc_in.data_contato,
         protocolo=nc_in.protocolo,
         hora_protocolo=nc_in.hora_protocolo,
+        status_contato=nc_in.status_contato,
     )
     db.add(novo)
     db.commit()
