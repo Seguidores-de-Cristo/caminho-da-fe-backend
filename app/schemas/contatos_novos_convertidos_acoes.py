@@ -20,6 +20,24 @@ class ContatoNovosConvertidosAcoesBase(BaseModel):
     especificacao_outros_resposta: Optional[str]
 
     manter_contato: bool
+    motivo_nao_manter_contato: Optional[str] = None
+    cadidato_abandonou_discipulado: bool
+    motivo_abandono_discipulado: Optional[str] = None
+
+    agendar_proximo_contato_data: Optional[str] = None
+    agendar_proximo_contato_hora: Optional[str] = None
+
+    # Após finalização do discipulado
+    candidato_preparado_batismo: bool
+    data_batismo: Optional[str] = None
+
+    candidato_esta_em_duvidas_batismo: bool
+    motivo_duvidas_batismo: Optional[str] = None
+
+    candidato_desistiu_batismo: bool
+    motivo_desistencia_batismo: Optional[str] = None
+
+
 
 
 class ContatoNovosConvertidosAcoesCreate(ContatoNovosConvertidosAcoesBase):
@@ -45,6 +63,23 @@ class ContatoNovosConvertidosAcoesUpdate(BaseModel):
     especificacao_outros_resposta: Optional[str] = None
 
     manter_contato: bool | None = None
+
+    motivo_nao_manter_contato: Optional[str] = None
+    cadidato_abandonou_discipulado: bool | None = None
+    motivo_abandono_discipulado: Optional[str] = None
+
+    agendar_proximo_contato_data: Optional[str] = None
+    agendar_proximo_contato_hora: Optional[str] = None
+
+    # Após finalização do discipulado
+    candidato_preparado_batismo: bool | None = None
+    data_batismo: Optional[str] = None
+
+    candidato_esta_em_duvidas_batismo: bool | None = None
+    motivo_duvidas_batismo: Optional[str] = None
+
+    candidato_desistiu_batismo: bool | None = None
+    motivo_desistencia_batismo: Optional[str] = None
 
 
 class ContatoNovosConvertidosAcoesOut(ContatoNovosConvertidosAcoesBase):

@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+from datetime import date
 
 from app.db.session import get_db
 from app.schemas.contatos_novos_convertidos_acoes import (
@@ -53,9 +54,18 @@ def atualizar_acao_contato(
     try:
         service = ContatosNovosConvertidosAcoesService()
         acao = service.atualizar_contato_novo_convertido_acoes(db, acao_id, acao_in)
-        return acao
+        
+        # Converte datas para string antes de retornar
+        resultado = acao.__dict__.copy()
+        if resultado.get("agendar_proximo_contato_data") and isinstance(resultado["agendar_proximo_contato_data"], date):
+            resultado["agendar_proximo_contato_data"] = resultado["agendar_proximo_contato_data"].isoformat()
+        if resultado.get("data_batismo") and isinstance(resultado["data_batismo"], date):
+            resultado["data_batismo"] = resultado["data_batismo"].isoformat()
+        
+        return resultado
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
     
     
 @router.get("/{acao_id}", response_model=ContatoNovosConvertidosAcoesOut)
@@ -77,4 +87,17 @@ def listar_acoes(
     current_user: models.User = Depends(get_current_user),
 ):
     service = ContatosNovosConvertidosAcoesService()
-    return service.listar_contatos_novos_convertidos_acoes(db)
+    acoes = service.listar_contatos_novos_convertidos_acoes(db)
+
+    # Converte datas para string para cada item da lista
+    resultado = []
+    for acao in acoes:
+        item = acao.__dict__.copy()
+        if item.get("agendar_proximo_contato_data") and isinstance(item["agendar_proximo_contato_data"], date):
+            item["agendar_proximo_contato_data"] = item["agendar_proximo_contato_data"].isoformat()
+        if item.get("data_batismo") and isinstance(item["data_batismo"], date):
+            item["data_batismo"] = item["data_batismo"].isoformat()
+        resultado.append(item)
+
+    return resultado
+
