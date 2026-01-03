@@ -27,7 +27,7 @@ def create_contato_novo_convertido_acoes(
         manter_contato=nc_in.manter_contato,
         motivo_nao_manter_contato=nc_in.motivo_nao_manter_contato,
 
-        cadidato_abandonou_discipulado=nc_in.cadidato_abandonou_discipulado,
+        candidato_abandonou_discipulado=nc_in.candidato_abandonou_discipulado,
         motivo_abandono_discipulado=nc_in.motivo_abandono_discipulado,
 
         agendar_proximo_contato_data=nc_in.agendar_proximo_contato_data,

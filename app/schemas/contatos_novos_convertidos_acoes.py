@@ -21,7 +21,7 @@ class ContatoNovosConvertidosAcoesBase(BaseModel):
 
     manter_contato: bool
     motivo_nao_manter_contato: Optional[str] = None
-    cadidato_abandonou_discipulado: bool
+    candidato_abandonou_discipulado: bool
     motivo_abandono_discipulado: Optional[str] = None
 
     agendar_proximo_contato_data: Optional[str] = None
@@ -65,7 +65,7 @@ class ContatoNovosConvertidosAcoesUpdate(BaseModel):
     manter_contato: bool | None = None
 
     motivo_nao_manter_contato: Optional[str] = None
-    cadidato_abandonou_discipulado: bool | None = None
+    candidato_abandonou_discipulado: bool | None = None
     motivo_abandono_discipulado: Optional[str] = None
 
     agendar_proximo_contato_data: Optional[str] = None
