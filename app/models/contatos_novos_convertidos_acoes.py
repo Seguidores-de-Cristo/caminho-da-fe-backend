@@ -34,7 +34,7 @@ class ContatoNovoConvertidoAcoes(Base):
     manter_contato = Column(Boolean, nullable=False, server_default=sa.false())
     motivo_nao_manter_contato = Column(String(1000), nullable=True)
 
-    cadidato_abandonou_discipulado = Column(Boolean, nullable=False, server_default=sa.false())
+    candidato_abandonou_discipulado = Column(Boolean, nullable=False, server_default=sa.false())
     motivo_abandono_discipulado = Column(String(1000), nullable=True)
 
     agendar_proximo_contato_data = Column(Date, nullable=True)
